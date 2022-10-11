@@ -1,0 +1,52 @@
+.todos-wrapper{
+
+
+    .todo-list{
+        border-bottom: 0.5px solid black;
+        border-radius: 10px;
+
+
+
+        .todo-rest-info{
+
+            padding-left:0;
+
+            .todo-status{
+                font-size: 20px;
+                color:white;
+
+            }
+        
+            .todo-time{
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+    
+        
+    }
+
+    
+    .todo-list:nth-child(2n) {
+        background-color: var(--special-color)
+    }
+
+    .line-through{
+        text-decoration: line-through;
+    }
+
+}
+
+@media(max-width: 780px){
+
+    .todos-wrapper{
+
+
+           svg{
+               font-size: 15px;
+           }
+        
+    }
+
+}

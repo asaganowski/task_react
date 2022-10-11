@@ -1,0 +1,25 @@
+.todos-wrapper{
+
+    text-align: center;
+    
+
+    .todo-header, .todo-list{
+
+        display: grid;
+        grid-template-columns: 6fr 6fr;
+        
+
+        .todo-title{
+            padding-left: 5px;
+        }
+
+    }
+
+    .todo-rest-headers, .todo-rest-info{
+
+        display: grid;
+        grid-template-columns: 3fr  2fr;
+    }
+    
+}
+

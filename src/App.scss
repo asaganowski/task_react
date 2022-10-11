@@ -1,0 +1,48 @@
+.page{
+    width:95%;
+    margin:20px 0;
+    background-color: rgba(223, 208, 197, 0.5);
+    display: grid;
+    grid-template-columns: 60px auto;
+    min-height: 800px;
+    max-width:1500px;
+    border-radius: 0 20px 20px 0;
+
+    .content{
+        margin: 20px auto;
+        width:90%;
+        border-radius: 20px;
+
+        table{
+            text-align: center;
+            border-color: rgb(223, 208, 197);
+        }
+    }
+}
+
+:root{
+    --special-color: rgb(227, 231, 240);
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+
+@media(max-width: 780px){
+
+    .page{
+            font-size: 90%;
+            width:100%;
+            grid-template-columns: 40px auto;
+
+            .content{
+                width:98%;
+                font-size: 70%;
+                margin:10px auto;
+            }
+
+        
+    }
+
+
+}
+

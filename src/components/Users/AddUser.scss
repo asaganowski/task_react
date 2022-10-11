@@ -1,0 +1,52 @@
+.addUser-content{
+
+    text-align: center;
+    
+
+    form{
+
+        border: 1px black dotted;
+        padding: 10px;
+        width:60%;
+        margin: 20px auto;
+        border-radius: 20px;
+        background-color: rgba(202, 197, 197,0.3);
+        display:block;
+        width:70%;
+        max-width: 400px;
+
+        input,.gender-select, .btn{
+            margin-bottom:15px;
+            width:80%;
+
+        }
+
+        .gender-select{
+            text-align: left;
+            margin-left:auto;
+            margin-right: auto;
+        }
+
+        .header{
+            font-style: italic;
+        }
+
+        .btn{
+            width:auto;
+        }
+    }
+}
+
+@media(max-width: 530px){
+
+    .addUser-content{
+        form{
+            font-size: 12px;
+
+            .btn{
+                font-size: 90%;
+            }
+        }
+    }
+
+}

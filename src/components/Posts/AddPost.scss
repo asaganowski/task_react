@@ -1,0 +1,47 @@
+.addPost-content{
+
+    form{
+        background-color: rgba(241, 244, 247, 0.7);
+        padding:15px;
+        border-radius: 10px;
+        display: block;
+        margin: 10px;
+
+        .title,textarea{
+            margin-top:10px;
+            width:50%;
+            border: none;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        .user-select{
+            width:30%;
+            min-width: 250px;
+        }
+
+        textarea{
+            width:95%;
+            height:100px;
+        }
+
+        .title{
+            height:40px;
+            min-width: 300px;
+        }
+
+        .btn{
+            width:auto;
+            margin-top:10px;
+        }
+
+        
+
+    }
+}
+
+@media(max-width: 530px){
+    form{
+        font-size: 13px;
+    }
+}

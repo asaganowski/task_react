@@ -1,0 +1,134 @@
+.postsList-content{
+    background-color: rgba(241, 244, 247, 0.7);
+    padding:15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    .user-details{
+        text-align: left;
+        margin-bottom: 20px;
+        display:flex;
+        flex-direction: row;
+
+        .user-photo{
+            
+
+            svg{
+                font-size: 50px;
+                border: 1px solid black;
+                border-radius: 50px;
+                padding: 5px;
+
+            }
+        }
+
+        .user-info{
+
+            margin-left: 20px;
+
+            .user-mail{
+                color: grey;
+            }
+    
+            .user-name{
+                margin-bottom: 0;
+                
+            }
+
+        }
+
+        
+        
+    }
+
+    
+
+    .post-details{
+
+        position: relative;
+
+        .title{
+            background-color: white;
+            padding-left: 5px;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            font-style: italic;
+
+        }
+
+    }
+
+    .showComment-btn{
+
+        position: relative;
+        height:30px;
+
+        .btn-link{
+            
+            position:absolute;
+            right:0;
+        }
+
+    }
+    
+
+    .comments-content{
+
+        display:flex;
+        flex-direction: column;
+        
+
+        .comment-details{
+            margin: 10px;
+            
+            display:flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .comment-photo{
+
+                svg{
+                    font-size: 30px;
+                    
+                    margin:6px;
+                }
+
+            }
+
+            .comment-info{
+
+                background-color: rgba(206, 201, 201, 0.4);
+                border-radius: 10px;
+                border-top-left-radius: 0;
+                padding: 10px;
+                width:85%;
+
+                .comment-body{
+                    margin-bottom: 5px;
+                }
+    
+                .comment-author{
+                    font-style:oblique;
+                }
+
+            }
+
+            
+        }
+    }
+}
+
+@media(max-width: 530px){
+    .postsList-content{
+
+        .showComment-btn{
+            .btn-link{
+                font-size: 12px;
+            }
+        
+        }
+
+    }
+
+}
