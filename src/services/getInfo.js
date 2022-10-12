@@ -22,6 +22,9 @@ export const getInfo = createApi({
     getCommentsByPostId: builder.query({
       query: (post_id) => request(`/posts/${post_id}/comments`),
     }),
+    getPaginatedUsers: builder.query({
+      query: (pageNumber) => request(`/users?page=${pageNumber}`),
+    }),
 
   }),
 })
@@ -31,5 +34,6 @@ export const {
   useGetAllUsersQuery,
   useGetAllPostsQuery, 
   useGetAllTodosQuery,
-  useGetCommentsByPostIdQuery
+  useGetCommentsByPostIdQuery,
+  useGetPaginatedUsersQuery
 } = getInfo // no needed refetch data when changing the path

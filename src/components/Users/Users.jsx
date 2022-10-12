@@ -1,21 +1,33 @@
-import React from 'react'
-import {Table} from "react-bootstrap"
+import React, { useEffect, useState } from 'react'
+import {Table, Button} from "react-bootstrap"
 import "./Users.scss"
 import { FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { BsXCircleFill, BsCheckCircleFill} from "react-icons/bs";
-import { useGetAllUsersQuery } from '../../services/getInfo'
+import { useGetPaginatedUsersQuery } from '../../services/getInfo'
 import Loader from '../Loader/Loader'
 import AddUser from './AddUser'
 
 
 function Users() {
 
-    const {data:users, isFetching} = useGetAllUsersQuery()
-    //fetching all users from API
+    
+
+    const [pageNumber, setPageNumber] = useState(1)
+    const {data: paginatedUsers,isFetching} = useGetPaginatedUsersQuery(pageNumber)
+    //fetching paginated users
+
+
+    useEffect(()=>{
+      if(pageNumber<1){
+        setPageNumber(1)
+      }
+        
+    },[pageNumber])
+
 
     if(isFetching) return <Loader/>
 
-    console.log(users)
+    console.log(paginatedUsers)
 
     const icons={
         male: <FcBusinessman/>,
@@ -32,6 +44,7 @@ function Users() {
 
     }
 
+
   return (
     <div className='users-wrapper'>
         <Table striped bordered hover>
@@ -44,7 +57,7 @@ function Users() {
         </tr>
       </thead>
       <tbody>
-      {users?.data?.map((item) => {
+      {paginatedUsers?.data?.map((item) => {
             return (
               <tr key={item.id}>
                 {Object.keys(item).filter(key => key!=="id").map((prop) =>{
@@ -62,6 +75,11 @@ function Users() {
         
       </tbody>
     </Table>
+
+    <ul className='pagination'>
+      <li className='pageNumber'><Button onClick={()=> {setPageNumber(pageNumber-1)}}> Prev </Button></li>
+      <li className='pageNumber'><Button onClick={()=> {setPageNumber(pageNumber+1)}}>Next</Button></li>
+    </ul>
 
     
 
