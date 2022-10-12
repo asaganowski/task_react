@@ -32,4 +32,4 @@ export const {
   useGetAllPostsQuery, 
   useGetAllTodosQuery,
   useGetCommentsByPostIdQuery
-} = getInfo 
+} = getInfo // no needed refetch data when changing the path
