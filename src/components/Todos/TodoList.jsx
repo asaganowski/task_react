@@ -2,31 +2,38 @@ import React from 'react'
 import moment from "moment"
 import { AiOutlineCheckSquare, AiOutlineCloseSquare } from 'react-icons/ai'
 import "./TodoList.scss"
+import { useGetUserQuery } from '../../services/getInfo'
 
 
 function TodoList({todo, style}) {
 
-    console.log(todo)
+    const {data:user} = useGetUserQuery(todo?.user_id)
+
+    console.log(user)
+
 
   return (
     <div style={style} className={`${todo.status==="completed" ? "line-through" : ""} todo-list`}>
 
-        <div className='todo-title'>
-            <p >{todo.title}</p>
+        <div className='todo-user'>
+            <p >{user?.data?.name}</p>
         </div>
                                         
 
         <div className='todo-rest-info'>
-            <div className='todo-time'>
+            <div className='todo-title info'>
+                <p>{todo.title}</p>
+            </div>
+            <div className='todo-time info'>
                 <p>{moment(todo.due_on).format("LL")}</p>
                 <small style={{visibility: todo.status==="pending" ? "visible" : "hidden"}}>ends {moment(todo.due_on).endOf("ss").fromNow()}</small>
             </div>
 
 
 
-            <div className='todo-status'>
+            <div className='todo-status info'>
 
-                <p className='todo-status'>{todo.status==="pending" ?  <AiOutlineCloseSquare style={{backgroundColor:"red"}}/> : <AiOutlineCheckSquare style={{backgroundColor:"green"}}/> }</p>
+                <p>{todo.status==="pending" ?  <AiOutlineCloseSquare style={{backgroundColor:"red"}}/> : <AiOutlineCheckSquare style={{backgroundColor:"green"}}/> }</p>
 
             </div>
 

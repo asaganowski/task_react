@@ -6,14 +6,15 @@ function TodoHeader() {
   return (
     <div className='todo-header'>
 
-      <div className='todo-title'>
+      <div className='todo-user'>
 
-        <p className='title-header'>Title</p>
+        <span className='user-header'>User</span>
       
       </div>
 
       <div className='todo-rest-headers'>
 
+        <span className='header title'>Title</span>
         <span className='header due_on'>Due On</span>
         <span className='header status'>Status</span>
 
