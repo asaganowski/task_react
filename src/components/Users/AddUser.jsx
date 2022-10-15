@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import Select from "react-select"
+import { FcBusinessman, FcBusinesswoman } from 'react-icons/fc'
 import { createRequest } from '../helper'
 import "./AddUser.scss"
 
@@ -15,6 +15,11 @@ function AddUser() {
         {value: "male", label: "Male"},
     ]
 
+    console.log(gender)
+
+    const onChange = (e) => {
+        setGender(e.target.value)
+    }
 
 
 const onSubmit = (e) =>{
@@ -58,15 +63,32 @@ const onSubmit = (e) =>{
                 required
             />
 
-            <Select
-                options={options}
-                onChange={(e)=>{
-                    setGender(e.value)
-                }}
-                className="gender-select"
-                placeholder="Gender"
-                />
-
+            <div className='gender-content'>
+                <span className='man gender'>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        className='input-radio'  
+                        value="male" 
+                        checked={gender === "male"} 
+                        onChange={onChange}  
+                        required
+                        />
+                    <FcBusinessman />
+                </span>
+                <span className='woman gender'>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        className='input-radio'
+                        value="female" 
+                        checked={gender === "female"} 
+                        onChange={onChange} 
+                        required
+                        />
+                    <FcBusinesswoman />
+                </span>
+            </div>
 
             <Button variant='success' type='submit'>Save</Button>
 
