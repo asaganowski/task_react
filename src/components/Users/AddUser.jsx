@@ -10,12 +10,6 @@ function AddUser() {
     const [gender,setGender] = useState("")
     const [mail,setMail] = useState("")
 
-    const options=[
-        {value: "female", label: "Female"},
-        {value: "male", label: "Male"},
-    ]
-
-    console.log(gender)
 
     const onChange = (e) => {
         setGender(e.target.value)
