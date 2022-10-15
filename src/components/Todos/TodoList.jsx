@@ -11,11 +11,14 @@ function TodoList({todo, style}) {
 
     console.log(user)
 
-    const fromNow = moment(todo.due_on).endOf("ss").fromNow()
+    const fromNow = moment(todo?.due_on).endOf("ss")?.fromNow();
+    const isCloseToExpire = fromNow?.match(/(\d+)/)?.[0]<7 || fromNow.endsWith("day") 
+
+    
 
 
   return (
-    <div style={style} className={`${todo.status==="completed" ? "line-through" : ""} todo-list ${fromNow.match(/(\d+)/)[0]<6 && todo.status==="pending" ? "red" : "" }`} >
+    <div style={style} className={`${todo.status==="completed" ? "line-through" : ""} todo-list ${isCloseToExpire && todo?.status==="pending" ? "red" : "" }`} >
 
         <div className='todo-user'>
             <p >{user?.data?.name}</p>
