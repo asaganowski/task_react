@@ -24,6 +24,7 @@ const onSubmit = (e) =>{
 
     createRequest("/public/v1/users", "POST", body)
         .then((data)=>{
+            alert("User added successfully")
             console.log(data)
         })
         .catch((error)=>{
