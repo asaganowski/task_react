@@ -11,9 +11,11 @@ function TodoList({todo, style}) {
 
     console.log(user)
 
+    const fromNow = moment(todo.due_on).endOf("ss").fromNow()
+
 
   return (
-    <div style={style} className={`${todo.status==="completed" ? "line-through" : ""} todo-list`}>
+    <div style={style} className={`${todo.status==="completed" ? "line-through" : ""} todo-list ${fromNow.match(/(\d+)/)[0]<6 && todo.status==="pending" ? "red" : "" }`} >
 
         <div className='todo-user'>
             <p >{user?.data?.name}</p>
@@ -26,7 +28,7 @@ function TodoList({todo, style}) {
             </div>
             <div className='todo-time info'>
                 <p>{moment(todo.due_on).format("LL")}</p>
-                <small style={{visibility: todo.status==="pending" ? "visible" : "hidden"}}>ends {moment(todo.due_on).endOf("ss").fromNow()}</small>
+                <small style={{visibility: todo.status==="pending" ? "visible" : "hidden"} } >ends {fromNow}</small>
             </div>
 
 
