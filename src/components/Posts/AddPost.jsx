@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import Select from "react-select"
 import { createRequest } from '../helper'
@@ -7,9 +7,26 @@ import { useGetAllUsersQuery } from '../../services/getInfo'
 
 function AddPost() {
 
-    const [title,setTitle] = useState("")
     const [name,setName] = useState("")
-    const [body,setBody] = useState("")
+
+    const [postData, setPostData]=useState(
+        {
+            title: "",
+            body: ""
+        });
+    
+    console.log(postData)
+    
+        useEffect(() => {
+            const data = localStorage.getItem("post-info")
+            if(data){
+                setPostData(JSON.parse(data))
+            }
+          }, []);
+        
+          useEffect(() => {
+            localStorage.setItem("post-info", JSON.stringify(postData));
+          },[postData]);
 
     const {data:users} = useGetAllUsersQuery()
 
@@ -21,10 +38,17 @@ function AddPost() {
     
       }))
 
+      const onChange = (e) => {
+        setPostData({
+            ...postData,
+            [e.target.name]: e.target.value
+        });
+    }
+
 const onSubmit = (e) =>{
     e.preventDefault()
 
-    const bodyData=JSON.stringify({"body": body, "title": title})
+    const bodyData=JSON.stringify({"body": postData.body, "title": postData.title})
 
 
     createRequest(`/public/v1/users/${name.id}/posts`, "POST", bodyData) //post request 
@@ -44,29 +68,27 @@ const onSubmit = (e) =>{
         <h4>Create a new Post</h4>
             <Select
                 options={options}
-                onChange={(e)=>{
-                    setName(e)
-                }}
+                onChange={(e)=>setName(e.target.value)}
                 className="user-select"
                 placeholder="Choose a User"
+                name="name"
                 />
 
             <input 
-                onChange={(e)=>{
-
-                    setTitle(e.target.value)
-                }} 
+                onChange={onChange}
                 placeholder="Title"
                 required
                 className='title'
+                name="title"
+                defaultValue={postData.title}
             />
 
             <textarea 
-                onChange={(e)=>{
-                    setBody(e.target.value)
-                }} 
+                onChange={onChange} 
                 placeholder="Body"
                 required
+                name="body"
+                defaultValue={postData.body}
             />
             
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { FcBusinessman, FcBusinesswoman } from 'react-icons/fc'
 import { createRequest } from '../helper'
@@ -6,20 +6,38 @@ import "./AddUser.scss"
 
 function AddUser() {
 
-    const [newUser,setNewUser] = useState("")
-    const [gender,setGender] = useState("")
-    const [mail,setMail] = useState("")
+    const [userData, setUserData]=useState(
+    {
+        name: "",
+        mail: "",
+        gender: ""
+    });
 
+console.log(userData)
 
-    const onChange = (e) => {
-        setGender(e.target.value)
-    }
+    useEffect(() => {
+        const data = localStorage.getItem("user-info")
+        if(data){
+            setUserData(JSON.parse(data))
+        }
+      }, []);
+    
+      useEffect(() => {
+        localStorage.setItem("user-info", JSON.stringify(userData));
+      },[userData]);
+
+const onChange = (e) => {
+    setUserData({
+        ...userData,
+        [e.target.name]: e.target.value
+    });
+}
 
 
 const onSubmit = (e) =>{
     e.preventDefault()
 
-    const body=JSON.stringify({ "name": newUser, "gender": gender, "status": "active", email: mail})
+    const body=JSON.stringify({ "name": userData.name, "gender": userData.gender, "status": "active", "email": userData.mail})
 
     createRequest("/public/v1/users", "POST", body)
         .then((data)=>{
@@ -32,6 +50,7 @@ const onSubmit = (e) =>{
           
 
 }
+
     
   return (
     <div className='addUser-content'>
@@ -39,22 +58,20 @@ const onSubmit = (e) =>{
         <form onSubmit={onSubmit}>
             <h5 className='header'>Add user</h5>
             <input 
-                onChange={(e)=>{
-
-                    setNewUser(e.target.value)
-                }} 
+                onChange={onChange} 
                 placeholder="Name"
+                name="name"
                 required
+                defaultValue={userData.name}
             />
 
             <input 
-                onChange={(e)=>{
-
-                    setMail(e.target.value)
-                }} 
+                onChange={onChange} 
+                name= "mail"
                 type="email"
                 placeholder="Email"
                 required
+                defaultValue={userData.mail}
             />
 
             <div className='gender-content'>
@@ -64,7 +81,7 @@ const onSubmit = (e) =>{
                         name="gender" 
                         className='input-radio'  
                         value="male" 
-                        checked={gender === "male"} 
+                        checked={userData.gender === "male"} 
                         onChange={onChange}  
                         required
                         />
@@ -76,7 +93,7 @@ const onSubmit = (e) =>{
                         name="gender" 
                         className='input-radio'
                         value="female" 
-                        checked={gender === "female"} 
+                        checked={userData.gender === "female"} 
                         onChange={onChange} 
                         required
                         />
