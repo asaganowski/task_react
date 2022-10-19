@@ -2,7 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Live Demo: https://hilarious-florentine-212931.netlify.app/
+## [Live Demo](https://hilarious-florentine-212931.netlify.app/)
+
+## Stack Technology
+Project was created with:
+* ReactJS
+* SCSS
+* React Router
+* Redux Toolkit
+* React-virtualized package (to render large lists)
+* REST API
 
 ## Available Scripts
 
